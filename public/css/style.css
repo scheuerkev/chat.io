@@ -1,0 +1,19 @@
+/*CUSTOM STYLES GOES HERE*/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: #ddd;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ddd;
+  text-decoration: none;
+}
