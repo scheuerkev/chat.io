@@ -2,6 +2,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 ul {
@@ -9,11 +10,20 @@ ul {
 }
 
 a {
-  color: #ddd;
+  color: #dcddde;
   text-decoration: none;
 }
 
 a:hover {
-  color: #ddd;
+  color: #dcddde;
   text-decoration: none;
+}
+
+body {
+  background: #36393f;
+  color: #dcddde;
+  min-height: 100vh;
+}
+.logo {
+  width: 100px;
 }
