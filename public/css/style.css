@@ -24,6 +24,44 @@ body {
   color: #dcddde;
   min-height: 100vh;
 }
+
+.container-fluid {
+  padding: 0;
+}
+
 .logo {
   width: 100px;
+}
+
+.container-namespaces {
+  min-width: 220px;
+  background: #2f3136;
+  border-right: 2px solid #36393f;
+}
+
+.container-rooms {
+  min-width: 220px;
+}
+
+.item-namespace img {
+  height: 50px;
+  width: 50px;
+  transition: all 190ms ease-in-out;
+}
+
+.item-namespace {
+  transition: all 220ms ease-in-out;
+}
+
+.item-namespace:hover {
+  background: #36393f;
+  cursor: pointer;
+}
+
+.item-namespace:hover img {
+  opacity: 0.9;
+}
+
+.item-namespace.active {
+  background: #36393f;
 }
