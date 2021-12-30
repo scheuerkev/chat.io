@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const path = require("path");
 const express = require("express");
 require("./database");
@@ -13,6 +15,7 @@ module.exports = {
 
 app.use(cookieParser());
 require("./config/jwt.config");
+require("./config/socket.config");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");

@@ -20,6 +20,7 @@
     "@types/socket.io-client": "^1.4.32",
     "bcrypt": "^3.0.6",
     "connect-mongo": "^3.2.0",
+    "cookie": "^0.4.1",
     "cookie-parser": "^1.4.4",
     "dotenv": "^10.0.0",
     "ejs": "^2.6.1",
