@@ -15,7 +15,6 @@ ioClient.on("connect", () => {
 
 ioClient.on("namespaces", (data) => {
   namespaces = data;
-  displayNamespaces(namespaces);
   for (let ns of namespaces) {
     const nsSocket = io(`/${ns._id}`);
     nsSocket.on("rooms", (data) => {
@@ -23,6 +22,7 @@ ioClient.on("namespaces", (data) => {
       if (!init) {
         init = true;
         activateNamespace(nsSocket);
+        displayNamespaces(namespaces, nsSocket.nsp);
       }
     });
     namespaceSockets.push(nsSocket);
@@ -34,10 +34,11 @@ const activateNamespace = (nsSocket) => {
   const firstRoom = rooms.find(
     (room) => `/${room.namespace}` === activeNsSocket.nsp && room.index === 0
   );
+  //activateRoom(firstRoom);
   displayRooms(
-    rooms.filter((room) => `/${room.namespace}` === activeNsSocket.nsp)
+    rooms.filter((room) => `/${room.namespace}` === activeNsSocket.nsp),
+    firstRoom._id
   );
-  //activateRoom(firstRoom)
 };
 
 setTimeout(() => {

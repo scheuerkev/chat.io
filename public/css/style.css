@@ -33,6 +33,10 @@ body {
   width: 100px;
 }
 
+.container-rooms {
+  background: #2f3136;
+}
+
 .container-namespaces {
   background: #2f3136;
   border-right: 2px solid #36393f;
@@ -63,4 +67,19 @@ body {
 
 .item-namespace.active {
   background: #36393f;
+}
+
+.item-room {
+  transition: all 120ms ease-in-out;
+}
+
+.item-room:hover {
+  background: #36393f;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.item-room.active {
+  background: #36393f;
+  border-radius: 5px;
 }
