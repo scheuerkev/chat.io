@@ -4,6 +4,7 @@ const { server } = require("../app");
 const { ensureAuthenticatedOnSocketHandshake } = require("./security.config");
 const { getNamespace } = require("../queries/namespace.queries");
 const { findRoomPerNamespaceId } = require("../queries/room.queries");
+const { findMessagePerRoomId } = require("../queries/message.queries");
 
 let ios;
 let namespaces;
@@ -20,6 +21,15 @@ const initNamespaces = async () => {
         } catch (e) {
           throw e;
         }
+        nsSocket.on("joinRoom", async (roomId) => {
+          try {
+            nsSocket.join(`/${roomId}`);
+            const messages = await findMessagePerRoomId(roomId);
+            nsSocket.emit("history", messages);
+          } catch (e) {
+            throw e;
+          }
+        });
       });
     }
   } catch (e) {}

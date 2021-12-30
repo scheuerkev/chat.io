@@ -59,6 +59,7 @@ body {
 .item-namespace:hover {
   background: #36393f;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .item-namespace:hover img {
@@ -67,6 +68,7 @@ body {
 
 .item-namespace.active {
   background: #36393f;
+  border-radius: 5px;
 }
 
 .item-room {
@@ -82,4 +84,9 @@ body {
 .item-room.active {
   background: #36393f;
   border-radius: 5px;
+}
+
+.list-messages {
+  overflow-y: auto;
+  max-height: calc(100vh - 160px);
 }

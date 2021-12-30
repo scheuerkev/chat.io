@@ -4,6 +4,8 @@ let rooms = [];
 let init = false;
 let activeNamespace;
 let activeNsSocket;
+let activeRoom;
+let messages = [];
 
 const ioClient = io({
   reconnection: false,
@@ -25,16 +27,29 @@ ioClient.on("namespaces", (data) => {
         displayNamespaces(namespaces, nsSocket.nsp);
       }
     });
+    nsSocket.on("history", (data) => {
+      messages = data;
+      displayMessages(messages);
+    });
+    nsSocket.on("message", (data) => {
+      messages.push(data);
+      displayMessages(messages);
+    });
     namespaceSockets.push(nsSocket);
   }
 });
+
+const activateRoom = (room) => {
+  activeNsSocket.emit("joinRoom", room._id);
+  activeRoom = room;
+};
 
 const activateNamespace = (nsSocket) => {
   activeNsSocket = nsSocket;
   const firstRoom = rooms.find(
     (room) => `/${room.namespace}` === activeNsSocket.nsp && room.index === 0
   );
-  //activateRoom(firstRoom);
+  activateRoom(firstRoom);
   displayRooms(
     rooms.filter((room) => `/${room.namespace}` === activeNsSocket.nsp),
     firstRoom._id
@@ -46,5 +61,8 @@ setTimeout(() => {
     namespaces,
     namespaceSockets,
     rooms,
+    activeRoom,
+    activeNsSocket,
+    messages,
   });
 }, 3000);
