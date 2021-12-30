@@ -7,6 +7,15 @@ const createNamespaceItem = (namespace, isActive) => {
   li.innerHTML = `
   <img src="${namespace.imageUrl}"/>
   `;
+
+  li.addEventListener("click", () => {
+    if (activeNsSocket.nsp !== `/${namespace._id}`);
+    activeNsSocket.emit("leaveRoom", activeRoom._id);
+    const ns = namespaceSockets.find((ns) => ns.nsp === `/${namespace._id}`);
+    activateNamespace(ns);
+    displayNamespaces(namespaces, ns.nsp);
+  });
+
   return li;
 };
 
@@ -28,6 +37,16 @@ const createRoomsItem = (room, isActive) => {
   li.innerHTML = `
   # ${room.title}
   `;
+  li.addEventListener("click", () => {
+    if (activeRoom._id !== room._id) {
+      activeNsSocket.emit("leaveRoom", activeRoom._id);
+      activateRoom(room);
+      displayRooms(
+        rooms.filter((room) => `/${room.namespace}` === activeNsSocket.nsp),
+        room._id
+      );
+    }
+  });
   return li;
 };
 
