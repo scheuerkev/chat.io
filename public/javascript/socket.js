@@ -2,7 +2,6 @@ let namespaces;
 let namespaceSockets = [];
 let rooms = [];
 let init = false;
-let activeNamespace;
 let activeNsSocket;
 let activeRoom;
 let messages = [];
